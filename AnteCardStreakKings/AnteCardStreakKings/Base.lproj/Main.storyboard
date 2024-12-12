@@ -33,7 +33,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aboutb Us" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZg-s9-z51">
-                                <rect key="frame" x="368.66666666666669" y="40" width="115" height="28"/>
+                                <rect key="frame" x="378.33333333333331" y="35.333333333333329" width="95.333333333333314" height="37.333333333333329"/>
                                 <fontDescription key="fontDescription" name="Charm-Bold" family="Charm" pointSize="24"/>
                                 <color key="textColor" name="appColor_white"/>
                                 <nil key="highlightedColor"/>
@@ -107,7 +107,7 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                                 <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAF-GQ-wiT">
-                                <rect key="frame" x="83" y="24" width="60" height="60"/>
+                                <rect key="frame" x="719" y="24" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Afu-RQ-j0l"/>
                                     <constraint firstAttribute="height" constant="60" id="tdz-mb-6Xr"/>
@@ -115,7 +115,7 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="ic_close"/>
                                 <connections>
-                                    <action selector="btnBack:" destination="NLu-Em-3Ir" eventType="touchUpInside" id="W9a-OH-23N"/>
+                                    <action selector="btnBackTapped:" destination="NLu-Em-3Ir" eventType="touchUpInside" id="Yqo-ke-Y9j"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="gCT-5Q-ekw">
@@ -127,15 +127,20 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="SLe-If-qeU" secondAttribute="bottom" id="4WF-6X-not"/>
                             <constraint firstItem="gCT-5Q-ekw" firstAttribute="centerX" secondItem="TTp-hJ-RIN" secondAttribute="centerX" id="Aoc-3T-9lt"/>
-                            <constraint firstItem="aAF-GQ-wiT" firstAttribute="leading" secondItem="y6b-ch-uXG" secondAttribute="leading" constant="24" id="HXY-BX-d67"/>
                             <constraint firstItem="aAF-GQ-wiT" firstAttribute="top" secondItem="y6b-ch-uXG" secondAttribute="top" constant="24" id="HYa-Sj-bVD"/>
                             <constraint firstItem="SLe-If-qeU" firstAttribute="top" secondItem="TTp-hJ-RIN" secondAttribute="top" id="JzA-B2-TdS"/>
                             <constraint firstItem="gCT-5Q-ekw" firstAttribute="centerY" secondItem="TTp-hJ-RIN" secondAttribute="centerY" id="LrR-Tm-Jtg"/>
+                            <constraint firstItem="y6b-ch-uXG" firstAttribute="trailing" secondItem="aAF-GQ-wiT" secondAttribute="trailing" constant="14" id="YAk-Xd-chI"/>
                             <constraint firstAttribute="trailing" secondItem="SLe-If-qeU" secondAttribute="trailing" id="aJb-n3-Zrw"/>
                             <constraint firstItem="SLe-If-qeU" firstAttribute="leading" secondItem="TTp-hJ-RIN" secondAttribute="leading" id="i44-M4-hjx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FRz-oo-mpc"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="gCT-5Q-ekw" id="QoT-4S-SkD"/>
+                        <outlet property="backLeftBtn" destination="aAF-GQ-wiT" id="Mzc-VW-T6r"/>
+                        <outlet property="bgImageV" destination="SLe-If-qeU" id="cvO-cY-Gr0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wV7-mR-q9t" sceneMemberID="firstResponder"/>
             </objects>
@@ -153,7 +158,7 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                                 <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cards Rules" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hrf-ca-g1z">
-                                <rect key="frame" x="360.66666666666669" y="40" width="131" height="28"/>
+                                <rect key="frame" x="370.66666666666669" y="35.333333333333329" width="110.66666666666669" height="37.333333333333329"/>
                                 <fontDescription key="fontDescription" name="Charm-Bold" family="Charm" pointSize="24"/>
                                 <color key="textColor" name="appColor_white"/>
                                 <nil key="highlightedColor"/>
@@ -183,7 +188,7 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4SR-7l-T8f">
-                                <rect key="frame" x="167" y="92" width="518" height="256"/>
+                                <rect key="frame" x="167" y="96.666666666666671" width="518" height="251.33333333333331"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="WPZ-et-UBR">
                                     <size key="itemSize" width="128" height="128"/>
@@ -248,7 +253,7 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                                 <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cards Rules" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3x-ld-vCR">
-                                <rect key="frame" x="360.66666666666669" y="32" width="131" height="28"/>
+                                <rect key="frame" x="370.66666666666669" y="27.333333333333332" width="110.66666666666669" height="37.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Charm-Bold" family="Charm" pointSize="24"/>
                                 <color key="textColor" name="appColor_white"/>
                                 <nil key="highlightedColor"/>
@@ -289,7 +294,7 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                                     <action selector="redo:" destination="DHQ-FV-PJ3" eventType="touchUpInside" id="kVi-8m-5eM"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kW3-w9-3Os" customClass="AnteCardSolitaireView" customModule="AnteCard_StreakKings" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kW3-w9-3Os" customClass="AnteCardSolitaireView" customModule="AnteCardStreakKings" customModuleProvider="target">
                                 <rect key="frame" x="90.999999999999972" y="92" width="383.33333333333326" height="264"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -381,7 +386,7 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AnteCard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fck-go-eUT">
-                                <rect key="frame" x="333" y="12" width="186" height="44"/>
+                                <rect key="frame" x="346.66666666666669" y="12" width="159" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="AnC-QM-jp3"/>
                                 </constraints>
@@ -390,7 +395,7 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STREAKKINGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kS6-c1-pXC">
-                                <rect key="frame" x="322.66666666666669" y="56" width="206.66666666666669" height="43"/>
+                                <rect key="frame" x="338" y="56" width="176.33333333333337" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="8ra-x1-2YZ"/>
                                 </constraints>
@@ -415,6 +420,9 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                                     <segue destination="83w-Fh-1Yj" kind="show" id="7zl-SP-qhB"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="PC2-Zl-Hqy">
+                                <rect key="frame" x="416" y="186.66666666666666" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tgA-Be-6Qb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -426,8 +434,10 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                             <constraint firstItem="Fck-go-eUT" firstAttribute="centerX" secondItem="5mA-yK-mQE" secondAttribute="centerX" id="6Of-g5-b8J"/>
                             <constraint firstItem="thc-Vl-8dS" firstAttribute="top" secondItem="5mA-yK-mQE" secondAttribute="top" id="8QJ-YD-Yk6"/>
                             <constraint firstItem="ros-ez-uS4" firstAttribute="height" secondItem="thc-Vl-8dS" secondAttribute="height" multiplier="0.9" id="DzH-xr-L4H"/>
+                            <constraint firstItem="PC2-Zl-Hqy" firstAttribute="centerX" secondItem="5mA-yK-mQE" secondAttribute="centerX" id="E52-c5-vau"/>
                             <constraint firstItem="Fck-go-eUT" firstAttribute="top" secondItem="tgA-Be-6Qb" secondAttribute="top" constant="12" id="EVo-ex-kAC"/>
                             <constraint firstAttribute="bottom" secondItem="thc-Vl-8dS" secondAttribute="bottom" id="Paf-Dm-lAt"/>
+                            <constraint firstItem="PC2-Zl-Hqy" firstAttribute="centerY" secondItem="5mA-yK-mQE" secondAttribute="centerY" id="Q4M-Xp-ILE"/>
                             <constraint firstItem="7L4-mN-WIc" firstAttribute="centerY" secondItem="thc-Vl-8dS" secondAttribute="centerY" multiplier="1.1" id="RWb-Ts-Lim"/>
                             <constraint firstItem="N7I-Tf-5OO" firstAttribute="top" secondItem="tgA-Be-6Qb" secondAttribute="top" id="SMd-zo-Apy"/>
                             <constraint firstItem="kS6-c1-pXC" firstAttribute="top" secondItem="Fck-go-eUT" secondAttribute="bottom" id="akf-uL-qXi"/>
@@ -444,6 +454,7 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                     </view>
                     <navigationItem key="navigationItem" id="Paw-8C-14S"/>
                     <connections>
+                        <outlet property="activityView" destination="PC2-Zl-Hqy" id="46D-Nd-Jyl"/>
                         <outlet property="imgLogo" destination="7L4-mN-WIc" id="bab-aX-FGC"/>
                     </connections>
                 </viewController>
@@ -528,7 +539,7 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                                     <constraint firstAttribute="height" constant="60" id="scV-OX-HRS"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="ic_info"/>
+                                <state key="normal" image="privacy"/>
                                 <connections>
                                     <segue destination="NLu-Em-3Ir" kind="push" id="NGY-mX-SZw"/>
                                 </connections>
@@ -540,7 +551,7 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                                     <constraint firstAttribute="height" constant="60" id="hzk-zh-k3p"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="ic_info"/>
+                                <state key="normal" image="share"/>
                                 <connections>
                                     <action selector="shareAction:" destination="83w-Fh-1Yj" eventType="touchUpInside" id="jdL-i7-iEL"/>
                                 </connections>
@@ -628,13 +639,13 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player One" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ds7-77-HYj">
-                                <rect key="frame" x="381.66666666666669" y="130.33333333333334" width="88.666666666666686" height="21"/>
+                                <rect key="frame" x="387.66666666666669" y="130.33333333333334" width="77" height="28"/>
                                 <fontDescription key="fontDescription" name="Charm-Bold" family="Charm" pointSize="18"/>
                                 <color key="textColor" name="appColor_white"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Two" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cU8-su-cqA">
-                                <rect key="frame" x="382.33333333333331" y="241.66666666666666" width="87.333333333333314" height="20.999999999999972"/>
+                                <rect key="frame" x="387.66666666666669" y="234.66666666666666" width="77" height="27.999999999999972"/>
                                 <fontDescription key="fontDescription" name="Charm-Bold" family="Charm" pointSize="18"/>
                                 <color key="textColor" name="appColor_white"/>
                                 <nil key="highlightedColor"/>
@@ -734,6 +745,8 @@ For Solitaire fans, our app offers an immersive Solitaire Game with essential fe
         <image name="ic_restart" width="1146" height="1147"/>
         <image name="ic_right" width="834" height="833"/>
         <image name="ic_undo" width="1147" height="1147"/>
+        <image name="privacy" width="834" height="834"/>
+        <image name="share" width="834" height="834"/>
         <namedColor name="appColor_black 1">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
