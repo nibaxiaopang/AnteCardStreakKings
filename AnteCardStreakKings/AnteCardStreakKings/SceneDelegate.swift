@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Adjust
+import AdjustSdk
 import AppTrackingTransparency
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

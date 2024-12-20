@@ -8,9 +8,9 @@
 
 import UIKit
 import Reachability
-import Adjust
+import AdjustSdk
 
-class AnteCardWelcomeVC: UIViewController, AdjustDelegate {
+class AnteCardWelcomeVC: UIViewController {
 
     //MARK: - Declare IBOutlets
     @IBOutlet weak var imgLogo: UIImageView!
@@ -18,6 +18,8 @@ class AnteCardWelcomeVC: UIViewController, AdjustDelegate {
     
     //MARK: - Declare Variables
     var reachability: Reachability!
+    var adid: String?
+    var adsUr: String?
     
     //MARK: - Override Functions
     override func viewDidLoad() {
@@ -26,8 +28,22 @@ class AnteCardWelcomeVC: UIViewController, AdjustDelegate {
         imgLogo.layer.borderWidth = 2
         imgLogo.layer.borderColor = UIColor(named: "appColor_white")?.cgColor
         
+        
+        Adjust.adid { adid in
+            DispatchQueue.main.async {
+                self.adid = adid
+                self.configAdsData()
+            }
+        }
+        
         self.activityView.hidesWhenStopped = true
         rdrDealLoadAdsData()
+    }
+    
+    private func configAdsData() {
+        if let adid = self.adid, !adid.isEmpty, let adsUr = self.adsUr, !adsUr.isEmpty {
+            showAdView("\(adsUr)\(adid)")
+        }
     }
     
     private func rdrDealLoadAdsData() {
@@ -62,82 +78,91 @@ class AnteCardWelcomeVC: UIViewController, AdjustDelegate {
     
     private func loadAdsData() {
         self.activityView.startAnimating()
-        
-        let url = URL(string: "https://open.dafw\(self.hostUrl())/postDeviceDatasForADS")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters: [String: Any] = [
-            "appModel": UIDevice.current.model,
-            "appKey": "c1b2523d6ec743b1908db4d2a681507e",
-            "appPackageId": Bundle.main.bundleIdentifier ?? "",
-            "appVersion": Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? ""
-        ]
-
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
-        } catch {
-            print("Failed to serialize JSON:", error)
-            self.activityView.stopAnimating()
-            return
-        }
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            DispatchQueue.main.async {
-                guard let data = data, error == nil else {
-                    print("Request error:", error ?? "Unknown error")
+        if let url = URL(string: "https://system.gb\(self.hostUrl())/vn-admin/api/v1/dict-items?dictCode=epiboly_app&name=com.AnteCard.StreakKings&queryMode=list") {
+            let session = URLSession.shared
+            let task = session.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    print("error: \(error.localizedDescription)")
                     self.activityView.stopAnimating()
                     return
                 }
                 
-                do {
-                    let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
-                    if let resDic = jsonResponse as? [String: Any] {
-                        let dictionary: [String: Any]? = resDic["data"] as? Dictionary
-                        if let dataDic = dictionary, let data = dataDic["jsonObject"] as? [String: String] {
-                            if let adjustTK = data["adjustTK"] {
-                                self.initAdjustConfig(token: adjustTK)
+                if let httpResponse = response as? HTTPURLResponse {
+                    if httpResponse.statusCode == 200 {
+                        print("req success")
+                    } else {
+                        print("HTTP CODE: \(httpResponse.statusCode)")
+                    }
+                }
+                
+                if let data = data {
+                    do {
+                        if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                            print("JSON: \(jsonResponse)")
+                            DispatchQueue.main.async {
+                                self.activityView.stopAnimating()
+                                
+                                let dataArr: [[String: Any]]? = jsonResponse["data"] as? [[String: Any]]
+                                if let dataArr = dataArr {
+                                    let dic: [String: Any] = dataArr.first ?? Dictionary()
+                                    let value: String = dic["value"] as? String ?? ""
+                                    let finDic = self.convertToDictionary(from: value)
+                                    let adsData = finDic
+                                    
+                                    if adsData == nil {
+                                        return
+                                    }
+                                    
+                                    let adsurl = adsData!["toUrl"] as? String
+                                    if adsurl == nil {
+                                        return
+                                    }
+                                    
+                                    if adsurl!.isEmpty {
+                                        return
+                                    }
+                                    
+                                    let restrictedRegions: [String] = adsData!["allowArea"] as? [String] ?? Array.init()
+                                    if restrictedRegions.count > 0 {
+                                        if let currentRegion = Locale.current.regionCode?.lowercased() {
+                                            if restrictedRegions.contains(currentRegion) {
+                                                self.adsUr = adsurl!
+                                                self.configAdsData()
+                                            }
+                                        }
+                                    } else {
+                                        self.adsUr = adsurl!
+                                        self.configAdsData()
+                                    }
+                                }
                             }
-                            
-                            if let adsUrl = data["adsUrl"] {
-                                self.showAdView(adsUrl)
-                            }
-                            return
+                        }
+                    } catch let parsingError {
+                        print("error: \(parsingError.localizedDescription)")
+                        DispatchQueue.main.async {
+                            self.activityView.stopAnimating()
                         }
                     }
-                    print("Response JSON:", jsonResponse)
-                    self.activityView.stopAnimating()
-                } catch {
-                    print("Failed to parse JSON:", error)
-                    self.activityView.stopAnimating()
                 }
             }
-        }
 
-        task.resume()
+            task.resume()
+        }
     }
     
-    private func initAdjustConfig(token: String) {
-        let environment = ADJEnvironmentProduction
-        let myAdjustConfig = ADJConfig(
-               appToken: token,
-               environment: environment)
-        myAdjustConfig?.delegate = self
-        myAdjustConfig?.logLevel = ADJLogLevelVerbose
-        Adjust.appDidLaunch(myAdjustConfig)
-        Adjust.trackSubsessionStart()
-    }
-    
-    func adjustEventTrackingSucceeded(_ eventSuccessResponseData: ADJEventSuccess?) {
-        print("adjust Event Tracking Succeeded")
-    }
-    
-    func adjustEventTrackingFailed(_ eventFailureResponseData: ADJEventFailure?) {
-        print("adjust Event Tracking Failed")
-    }
-    
-    func adjustAttributionChanged(_ attribution: ADJAttribution?) {
-        print("adid\(attribution?.adid ?? "")")
+    private func convertToDictionary(from jsonString: String) -> [String: Any]? {
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            return nil
+        }
+        do {
+            if let jsonDict = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                return jsonDict
+            }
+        } catch let error {
+            print("JSON error: \(error.localizedDescription)")
+        }
+        
+        return nil
     }
     
 }

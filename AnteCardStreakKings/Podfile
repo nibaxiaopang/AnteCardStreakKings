@@ -7,6 +7,6 @@ target 'AnteCardStreakKings' do
 
   # Pods for AnteCardStreakKings
   pod 'IQKeyboardManagerSwift'
-  pod 'Adjust','4.38.4'
+  pod 'Adjust'
   pod 'ReachabilitySwift'
 end

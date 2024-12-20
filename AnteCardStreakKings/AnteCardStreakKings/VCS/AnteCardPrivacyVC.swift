@@ -7,7 +7,6 @@
 
 import UIKit
 import WebKit
-import Adjust
 
 class AnteCardPrivacyVC: UIViewController, WKNavigationDelegate , WKUIDelegate {
     
@@ -16,7 +15,6 @@ class AnteCardPrivacyVC: UIViewController, WKNavigationDelegate , WKUIDelegate {
     @IBOutlet weak var bgImageV: UIImageView!
     var webView: WKWebView!
     @objc var urlStr: String?
-    var wbru: AnteCardWbViJBri?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,20 +50,9 @@ class AnteCardPrivacyVC: UIViewController, WKNavigationDelegate , WKUIDelegate {
             webView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
 
-        AnteCardWbViJBri.enableLogging()
-        wbru = AnteCardWbViJBri.brid(for: webView)
-        wbru?.setWebViewDelegate(self)
-        wbru?.registerHandler("adjustEvent", handler: { data, responseCallback in
-            if let params = data as? [String: Any] {
-                if params["event"] as? String == "getadid" {
-                    self.getAdid(responseCallback: responseCallback)
-                }
-            }
-        })
         activityIndicator.hidesWhenStopped = true
         view.bringSubviewToFront(activityIndicator)
         view.bringSubviewToFront(backLeftBtn)
-
     }
     
     let privacyUrl = "https://www.termsfeed.com/live/d311e942-a92d-406d-8620-982d34e72033"
@@ -83,21 +70,6 @@ class AnteCardPrivacyVC: UIViewController, WKNavigationDelegate , WKUIDelegate {
             if let url = URL(string: privacyUrl) {
                 let request = URLRequest(url: url)
                 webView.load(request)
-            }
-        }
-    }
-    
-    private func getAdid(responseCallback: WVJBResponseCallback?) {
-        if Adjust.adid() != nil {
-            let callback = ["recode": Adjust.adid()]
-            if let responseCallback = responseCallback {
-                print("success")
-                responseCallback(callback)
-            }
-        } else {
-            let delayInSeconds = 0.5
-            DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) {
-                self.getAdid(responseCallback: responseCallback)
             }
         }
     }

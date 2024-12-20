@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "Player One"; ObjectID = "Ds7-77-HYj"; */
+"Ds7-77-HYj.text" = "Player One";
+
+/* Class = "UILabel"; text = "AnteCard"; ObjectID = "Fck-go-eUT"; */
+"Fck-go-eUT.text" = "AnteCard";
+
+/* Class = "UILabel"; text = "Cards Rules"; ObjectID = "Hrf-ca-g1z"; */
+"Hrf-ca-g1z.text" = "Cards Rules";
+
+/* Class = "UITextView"; text = "Welcome to AnteCard StreakKings, the ultimate destination for card game enthusiasts. Our app is thoughtfully designed to bring timeless card games to life with a modern and engaging interface. Whether you're competing in a thrilling two-player duel, exploring card rules, or indulging in a classic game of Solitaire, AnteCard StreakKings has something for everyone.\n\nThree Card Game allows two players to face off in an exciting challenge of strategy and luck. With the tap of a button, reveal your cards and see who reigns supreme in the showdown. Instant feedback through alerts ensures a seamless gaming experience.\n\nExplore the Card Rules section to master the rankings of poker hands, complete with vivid images and an intuitive layout. Whether you're a novice or a seasoned player, this feature makes learning the rules easy and enjoyable.\n\nFor Solitaire fans, our app offers an immersive Solitaire Game with essential features like undo, redo, and restart. Enjoy the freedom to refine your strategies while reliving this beloved classic in its purest form.\n\n"; ObjectID = "R49-Ta-sRv"; */
+"R49-Ta-sRv.text" = "Welcome to AnteCard StreakKings, the ultimate destination for card game enthusiasts. Our app is thoughtfully designed to bring timeless card games to life with a modern and engaging interface. Whether you're competing in a thrilling two-player duel, exploring card rules, or indulging in a classic game of Solitaire, AnteCard StreakKings has something for everyone.\n\nThree Card Game allows two players to face off in an exciting challenge of strategy and luck. With the tap of a button, reveal your cards and see who reigns supreme in the showdown. Instant feedback through alerts ensures a seamless gaming experience.\n\nExplore the Card Rules section to master the rankings of poker hands, complete with vivid images and an intuitive layout. Whether you're a novice or a seasoned player, this feature makes learning the rules easy and enjoyable.\n\nFor Solitaire fans, our app offers an immersive Solitaire Game with essential features like undo, redo, and restart. Enjoy the freedom to refine your strategies while reliving this beloved classic in its purest form.\n\n";
+
+/* Class = "UILabel"; text = "Solitaire"; ObjectID = "T3x-ld-vCR"; */
+"T3x-ld-vCR.text" = "Solitaire";
+
+/* Class = "UILabel"; text = "Player Two"; ObjectID = "cU8-su-cqA"; */
+"cU8-su-cqA.text" = "Player Two";
+
+/* Class = "UILabel"; text = "STREAKKINGS"; ObjectID = "kS6-c1-pXC"; */
+"kS6-c1-pXC.text" = "STREAKKINGS";
+
+/* Class = "UILabel"; text = "Aboutb Us"; ObjectID = "lZg-s9-z51"; */
+"lZg-s9-z51.text" = "Aboutb Us";
+
+/* Class = "UIButton"; normalTitle = "Show Cards"; ObjectID = "s2c-Sz-VrB"; */
+"s2c-Sz-VrB.normalTitle" = "Show Cards";

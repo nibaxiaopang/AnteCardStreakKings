@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import AdjustSdk
 
 func sandboxArchivePath() -> String {
     let dir : NSString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
@@ -33,8 +34,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.shared.isEnabled = true
         
+        initAdjustConfig(token: "gz7i30jtpk3k")
         return true
     }
+    
+    private func initAdjustConfig(token: String) {
+        let environment = ADJEnvironmentProduction
+        let myAdjustConfig = ADJConfig(
+               appToken: token,
+               environment: environment)
+        myAdjustConfig?.logLevel = ADJLogLevel.verbose
+        Adjust.initSdk(myAdjustConfig);
+    }
+    
 
     // MARK: UISceneSession Lifecycle
 
