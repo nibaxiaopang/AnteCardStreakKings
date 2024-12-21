@@ -55,7 +55,7 @@ class AnteCardPrivacyVC: UIViewController, WKNavigationDelegate , WKUIDelegate {
         view.bringSubviewToFront(backLeftBtn)
     }
     
-    let privacyUrl = "https://www.termsfeed.com/live/d311e942-a92d-406d-8620-982d34e72033"
+    let privacyUrl = "https://www.termsfeed.com/live/dd5cdece-aa62-459c-952f-a9a285e45927"
     private func initRequest() {
         activityIndicator.startAnimating()
         
